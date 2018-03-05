@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <title>DiscordAnonymousChat</title>
+    <script type="text/javascript">
+		function ajax_post() {
+			document.getElementById("status").innerHTML = "訊息傳送中...";
+			console.log($("#user").val());
+			$.post("server.php", {
+				message: $("#msg").val(),
+				username: $('#user').val(),
+			},
+				function (data) {
+					$("#status").html(data);
+				});
+			document.getElementById('msg').value = '';
+            document.getElementById('user').value = '';
+		}
+	</script>
+</head>
+<body>
+    
+    <div class="wrap">
+        <h1>DiscordAnonymousChat</h1>
+        <span style="padding-left:8px;">使用者</span>
+        <input class="inp" type="text" name="user" id="user">
+        <span style="padding-left:8px;">訊息</span>
+        <input class="inp" type="text" name="msg" id="msg">
+        <button class="btn" type="submit" name="submit" id="submit" onclick="ajax_post()">傳送匿名訊息</button>
+        <p id="status"></p>
+    </div>
+
+
+</body>
+</html>
